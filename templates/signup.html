@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Restaurant Signup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap & Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+
+  <!-- Coral-Themed Custom Styles -->
+  <style>
+    body {
+      background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 400px;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+
+    .card-header {
+      background-color: #ff6f61;
+      color: white;
+      text-align: center;
+      font-size: 24px;
+      padding: 20px;
+      font-weight: bold;
+    }
+
+    .card-body {
+      background: #fff;
+      padding: 30px;
+    }
+
+    .form-control {
+      border-radius: 8px;
+    }
+
+    .btn-primary {
+      background-color: #ff6f61;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .btn-primary:hover {
+      background-color: #e85c50;
+    }
+
+    .custom-alert {
+      background-color: #fef3e2;
+      border-left: 5px solid #ff6f61;
+      padding: 10px 15px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      position: relative;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .custom-alert .close-btn {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      color: #777;
+    }
+
+    .signup-text {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .signup-text a {
+      color: #ff6f61;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .signup-text a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="card-header">
+      Sign Up
+    </div>
+    <div class="card-body">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="custom-alert">
+            {{ message }}
+            <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      <form method="POST" action="">
+        {% csrf_token %}
+        <div class="mb-3">
+          <input type="text" class="form-control" name="username" placeholder="Username" required>
+        </div>
+
+        <div class="mb-3">
+          <input type="password" class="form-control" name="password" placeholder="Password" required>
+        </div>
+
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+        </div>
+
+        <div class="signup-text">
+          Already have an account? <a href="/">Login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

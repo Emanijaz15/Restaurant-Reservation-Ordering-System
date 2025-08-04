@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block home %}{% endblock home %}
+
+{% block content %}
+<style>
+  body {
+    background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+  }
+
+  .reserve-section {
+    padding: 60px 20px;
+  }
+
+  .reserve-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ff6f61;
+  }
+
+  .reserve-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .reserve-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .reserve-form input,
+  .reserve-form select,
+  .reserve-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .reserve-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff6f61;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .reserve-form button:hover {
+    background-color: #e85c50;
+  }
+
+  .custom-alert {
+    background-color: #fef3e2;
+    border-left: 5px solid #ff6f61;
+    padding: 12px 20px;
+    border-radius: 8px;
+    position: relative;
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    text-align: center;
+    color: #333;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .custom-alert .close-btn {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #555;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 600px) {
+    .reserve-form {
+      padding: 20px;
+    }
+
+    .reserve-section h2 {
+      font-size: 2rem;
+    }
+  }
+</style>
+
+<section class="reserve-section">
+  <h2>Reserve a Table</h2>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="custom-alert my-3">
+        {{ message }}
+        <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="reserve-container">
+    <div class="reserve-form">
+      <form method="POST" action="{% url 'reserve' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit Reservation</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

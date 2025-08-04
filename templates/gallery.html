@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block home %}{% endblock %}
+{% block content %}
+{% load static %}
+<style>
+  .gallery-section {
+    padding: 60px 20px;
+    background-color: #fff;
+    color: #000;
+  }
+
+  .gallery-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    font-weight: bold;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .gallery-grid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .gallery-grid img:hover {
+    transform: scale(1.03);
+  }
+
+  @media (max-width: 600px) {
+    .gallery-section h2 {
+      font-size: 2rem;
+    }
+  }
+  .gallery-section h2{
+    color: #ff6f61;
+  }
+</style>
+
+<section class="gallery-section">
+  <h2>Our Gallery</h2>
+  <div class="gallery-grid">
+    <!-- Food Items -->
+    <img src="{% static 'images/Grilled Steak.jpg' %}" alt="Grilled Steak">
+    <img src="{% static 'images/pasta delight.jpg' %}" alt="Pasta Delight">
+    <img src="{% static 'images/Fresh salad.jpg' %}" alt="Fresh Salad">
+
+    <!-- Interior Shots -->
+    <img src="{% static 'images/Dinning area.jpg' %}" alt="Dining Area">
+    <img src="{% static 'images/Ambience view.jpg' %}" alt="Ambience View">
+
+    <!-- Events -->
+    <img src="{% static 'images/Birthday celebration.jpg' %}" alt="Birthday Celebration">
+    <img src="{% static 'images/Family gathering.jpg' %}" alt="Family Gathering">
+
+    <!-- Staff / Kitchen -->
+    <img src="{% static 'images/chef at work.jpg' %}" alt="Chef at Work">
+    <img src="{% static 'images/Our team.jpg' %}" alt="Our Team">
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% block home %}{% endblock home %}
+{% block content %}
+<style>
+  body {
+    background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+  }
+
+  #Contact {
+    padding: 60px 20px;
+  }
+
+  #Contact h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ff6f61;
+  }
+
+  .contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .form-div {
+    margin-bottom: 20px;
+  }
+
+  .form input,
+  .form textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: #f9f9f9;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    resize: none;
+  }
+
+  .form textarea {
+    height: 120px;
+  }
+
+  .form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff6f61;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .form button:hover {
+    background-color: #e85c50;
+  }
+
+  .custom-alert {
+    background-color: #fef3e2;
+    border-left: 5px solid #ff6f61;
+    padding: 12px 20px;
+    border-radius: 8px;
+    position: relative;
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    text-align: center;
+    color: #333;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    color: #555;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 600px) {
+    .form {
+      padding: 20px;
+    }
+
+    #Contact h1 {
+      font-size: 2rem;
+    }
+  }
+</style>
+
+<section id="Contact">
+  <h1>Contact Me</h1>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="custom-alert my-3">
+        {{ message }}
+        <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="contact-container">
+    <div class="form" id="contactForm">
+      <form method="POST" action="{% url 'contact' %}">  
+        {% csrf_token %}
+        <div class="form-div">
+          <input type="text" name="name" placeholder="Enter Your Name" required>
+        </div>
+
+        <div class="form-div">
+          <input type="email" name="email" placeholder="Enter Your Email" required>
+        </div>
+
+        <div class="form-div">
+          <input type="tel" name="number" placeholder="Enter Your Phone" required>
+        </div>
+
+        <div class="form-div">
+          <textarea name="content" placeholder="Enter Message" required></textarea>
+        </div>
+
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
