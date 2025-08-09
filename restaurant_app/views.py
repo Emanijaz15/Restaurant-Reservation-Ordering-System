@@ -9,6 +9,7 @@ from django.contrib.auth.hashers import make_password
 from . import models
 from django.templatetags.static import static
 from .models import Order
+from django.contrib.auth.decorators import login_required
 
 
 def signup(request):
@@ -53,7 +54,7 @@ def home(request):
         return redirect('/main')
     return render(request, 'base.html')
 
-
+@login_required
 def contact(request):
    if request.method=="POST":
        print('post')
@@ -70,9 +71,11 @@ def contact(request):
        return redirect('contact')  
    return render(request, 'contact.html')
 
+@login_required
 def gallery(request):
     return render(request, 'gallery.html')
 
+@login_required
 def menu(request):
     menu_items = [
         {"name": "Margherita Pizza", "description": "Classic cheese & tomato pizza", "price": 8.99,
@@ -118,7 +121,7 @@ def menu(request):
     ]
     return render(request, 'menu.html', {'menu_items': menu_items})
 
-
+@login_required
 def reserve_table(request):
     if request.method == 'POST':
         form = ReservationForm(request.POST)
@@ -131,7 +134,7 @@ def reserve_table(request):
 
     return render(request, 'reserve.html', {'form': form})
 
-
+@login_required
 def place_order(request):
     if request.method == "POST":
         name = request.POST.get("name")
